@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+	<title>Document</title>
+	<style>
+		@import url('http://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
+	  
+		*, *:before, *:after {margin: 0; padding: 0; box-sizing: border-box;}
+		body {background: #2F2556; color: #B9B5C7; font: 14px 'Open Sans', sans-serif;} 
+	  
+		/*h1 {padding: 200px 0; font-weight: 400; text-align: center;}
+		p {margin: 0 0 20px; line-height: 1.5;}*/
+
+		.side {
+		-ms-flex: 20%; /* IE10 */
+        flex: 20%;
+        text-align: center;
+        
+        padding: 20px;
+		}
+		
+		/*.main {margin: 0 auto; min-width: 320px; max-width: 800px;} */
+		.content {background: #fff; color: #373737;}
+		.content > div {display: none; padding: 20px 25px 5px;}
+	  
+		input {display: none;}
+		label {display: inline-block; padding: 10px 25px; font-weight: 600; text-align: center;}
+		label:hover {color: #fff; cursor: pointer;}
+		input:checked + label {background: #ed5a6a; color: #fff;}
+	  
+		#tab1:checked ~ .content #content1,
+		#tab2:checked ~ .content #content2{
+		  display: block;
+		}
+	  
+		@media screen and (max-width: 400px) { label {padding: 15px 10px;} }
+	 </style>
+</head>
+<body>
+	<div class="side">
+		  
+			<input id="tab1" type="radio" name="tabs" checked>
+			<label for="tab1">Create Task</label>
+	
+			<input id="tab2" type="radio" name="tabs">
+			<label for="tab2">Create group</label>
+	
+			
+	
+			<div class="content">  
+				<div id="content1">
+				<p>
+					New York – referred to as New York City or the City of New York to distinguish it from the State of New York, of which it is a part – is the most populous city in the United States and the center of the New York metropolitan area, the premier gateway for legal immigration to the United States and one of the most populous urban agglomerations in the world. A global power city, New York exerts a significant impact upon commerce, finance, media, art, fashion, research, technology, education, and entertainment.
+				<p>
+					Home to the headquarters of the United Nations, New York is an important center for international diplomacy and has been described as the cultural and financial capital of the world.
+				</p>
+				</div>
+	
+				<div id="content2">
+				<p>
+				London is the capital city of England and the United Kingdom. It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants. Standing on the River Thames, London has been a major settlement for two millennia, its history going back to its founding by the Romans, who named it Londinium.
+				</p>
+				<p>
+					London's ancient core, the City of London, largely retains its 1.12-square-mile (2.9 km2) mediaeval boundaries and in 2011 had a resident population of 7,375, making it the smallest city in England. Since at least the 19th century, the term London has also referred to the metropolis developed around this core.
+				</p>
+				</div>
+  
+			</div>
+		
+		
+	</div>
+</body>
+</html>

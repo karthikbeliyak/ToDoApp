@@ -1,0 +1,264 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>To-Do App</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <!-- Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js" integrity="sha256-VBLiveTKyUZMEzJd6z2mhfxIqz3ZATCuVMawPZGzIfA=" crossorigin="anonymous"></script>
+
+    <!-- Tempus Dominus Bootstrap 4 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css" integrity="sha256-XPTBwC3SBoWHSmKasAk01c08M6sIA5gF5+sRxqak2Qs=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js" integrity="sha256-z0oKYg6xiLq3yJGsp/LsY9XykbweQlHl42jHv2XTBz4=" crossorigin="anonymous"></script>
+    <script>
+        $(function () {
+            $("#datetimepicker1").datetimepicker({format: 'DD/MM/YYYY HH:mm',});
+        });
+        $(function () {
+            $("#datetimepicker2").datetimepicker({format: 'DD/MM/YYYY HH:mm',});
+        });
+    </script>
+    
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        /* Style the body */
+        body {
+            font-family: Roboto;
+            margin: 0;
+        }
+
+        .navbar {
+            color: #373535 !important;
+            font-size: 100px;
+            margin: 8px 0;
+        }
+        .navbar-custom { 
+            background-color: 	#001f3f; 
+        } 
+        /* Modify brand and text color */ 
+          
+        .navbar-custom .navbar-brand, 
+        .navbar-custom .navbar-text { 
+            color: whitesmoke; 
+        }
+                       
+        /* Column container */
+        .row {  
+        display: -ms-flexbox; /* IE10 */
+        display: flex;
+        -ms-flex-wrap: wrap; /* IE10 */
+        flex-wrap: wrap;
+        }
+        
+        /* Create two unequal columns that sits next to each other */
+        /* Sidebar/left column */
+        .side {
+        -ms-flex: 20%; /* IE10 */
+        flex: 20%;
+        text-align: center;
+        background-color: rgb(234, 241, 245);
+        padding: 20px;
+        }
+                
+        /* Main column */
+        .main {   
+        -ms-flex: 70%; /* IE10 */
+        flex: 70%;
+        background-color: white;
+        padding: 20px;
+        }
+
+        .scrollbar{
+            margin-left: 10px;
+            float: left;
+            height: 500px;
+            width: 1400px;
+            background: rgb(234, 241, 245);
+            overflow-y: scroll;
+            margin-bottom: 50px;
+        }
+                
+        /* Fake image, just for this example */
+        .fakeimg {
+        background-color: #aaa;
+        width: 100%;
+        padding: 20px;
+        }
+        
+        /* Footer */
+        .footer {
+        padding: 20px;
+        text-align: center;
+        background: #ddd;
+        }
+        
+        /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 700px) {
+        .row {   
+            flex-direction: column;
+        }
+        }
+        
+        /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+        @media screen and (max-width: 400px) {
+        .navbar a {
+            float: none;
+            width: 100%;
+        }
+        }
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar navbar-custom">
+        <a class="navbar-brand" href="#">Task Tracker</a>
+        <form class="form-inline">
+            <button class="btn btn-outline-success" type="button">Add Task</button>            
+        </form>
+    </nav>
+    
+    <div class="row">
+        <div class="side">
+            <form action="#" method="post">
+                {% csrf_token %}
+                <!--<div class="form-row">
+                    <div class="col-7">-->
+                <div class="form-group row">
+                    <label for="{{ form.task_name.id_for_label }}" class="col-sm-3 col-form-label">Task Name:</label>
+                    <div class="col-sm-6">
+                        <!--<input type="text" class="form-control" placeholder="Task Name"id='task_name'>-->
+                        {{ form.task_name}}
+                    </div>
+                </div><br>
+                    <!--</div>
+                </div>-->
+                <div class="form-group row">
+                    <label for="{{ form.task_category.id_for_label }}" class="col-sm-3 col-form-label">Category:</label>
+                    <div class="col-sm-6">
+                        <!--<input type="text" class="form-control" placeholder="Category" id='task_category'>-->
+                       
+                        {{ form.task_category }}
+                    </div>
+                </div><br>
+
+                <div class="form-group row">
+                    <label for="{{ form.start_time.id_for_label }} " class="col-sm-3 col-form-label">Start Time:</label>
+                    <div class="col-sm-6">
+                        <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                            <!--<input type="text" class="form-control datetimepicker-input" placeholder="Select Date and Time" data-target="#datetimepicker1"/>-->
+                            {{ form.start_time }}                           
+                            <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>                    
+                       
+                    </div>
+                </div><br>
+
+                <div class="form-group row">
+                    <label for="{{ form.end_time.id_for_label }}" class="col-sm-3 col-form-label">End Time:</label>
+                    <div class="col-sm-6">
+                        <!--<input type="text" class="form-control" placeholder="End Time" id='task_end_time'>-->
+                        <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+                            <!--<input type="text" class="form-control datetimepicker-input" placeholder="Select Date and Time" data-target="#datetimepicker2"/>-->
+                            {{ form.end_time }}
+                            <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+                              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div><br>
+
+                <div class="form-group row">                    
+                    <label for="{{ form.task_repeatative.id_for_label }}" class="col-sm-3 col-form-label">Repeatative:</label>
+                        {% for each in form.task_repeatative %}
+                            <div class="col-sm-3">
+                                <!--<input type="text" class="form-control" placeholder="Is this repeatative" id='task_repeatative'> -->
+                                <div class="radio-inline" name = "task_repeatative">
+                                    <!--<label class="radio-inline"><input type="radio" id='task_repeatative' name="optradio" >Yes</label>
+                                    <label class="radio-inline"><input type="radio" id='task_repeatative' name="optradio" checked>No</label> -->
+                                    {{ each }}                                    
+                                </div>                        
+                            </div>
+                        {% endfor %}
+                </div><br>
+
+                <div class="form-group row">
+                    <label for="{{ form.task_status.id_for_label }}" class="col-sm-3 col-form-label">Task status:</label>
+                    <div class="col-sm-6">                        
+                            {{ form.task_status }}                         
+                    </div>   
+                </div> 
+
+                <div class="col-auto">
+                    <button  type="submit" class="btn btn-primary mb-2" style="float: center;">Submit</button>
+                </div>
+
+                {% if messages %}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    <strong>{{ message }}</strong>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                {% endif %}
+
+            </form>
+        </div>
+        <div class="main">
+            <h2>My Tasks</h2>
+            <div class="scrollbar" id="style-default">
+                <div class="force-overflow">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <!--<th scope="col">#</th>-->
+                                <th scope="col">Task Name</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Start Time</th>
+                                <th scope="col">End Time</th>
+                                <th scope="col">Repeatative</th>
+                                <th scope="col">Task status</th>
+                            </tr>
+                        </thead>                        
+                            <tbody>                                    
+                                {% for info in user_input %}
+                                    <tr>                            
+                                        <!--<th scope="row">1</th>-->
+                                        <td>{{info.task_name}}</td>
+                                        <td>{{info.task_category}}</td>
+                                        <td>{{info.start_time}}</td>
+                                        <td>{{info.end_time}}</td>
+                                        <td>{{info.task_repeatative}}</td>
+                                        <td>{{info.task_status}}</td>                            
+                                    </tr>
+                                {% endfor %}                            
+                            </tbody>                                   
+                    </table>
+                </div>
+            </div> 
+        </div>
+    </div>
+    
+    <div class="footer">
+      <h2>Footer</h2>
+    </div>
+ 
+    
+</body>
+</html>
